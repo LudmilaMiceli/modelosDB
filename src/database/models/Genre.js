@@ -1,53 +1,56 @@
 /* const { DataTypes } = require("sequelize");
 const { sequelize } = require(".");
-const { config } = require("dotenv"); */
+const { config } = require("dotenv"); 
+const Sequelize = require('sequelize');
+const sequelize = require('../database') */
 
-module.exports = (sequelize, dataTypes) => {
+module.exports = (sequelize, DataTypes) => {
     
     const alias = "Genre";
     const cols = {
         id: {
-            type : dataTypes.INTEGER.UNSIGNED,
+            type : DataTypes.INTEGER.UNSIGNED,
             primaryKey : true,
             allowNull : false,
             autoIncrement : true
         },
         name: {
-            type : dataTypes.STRING(100),
+            type : DataTypes.STRING(100),
             allowNull : false
         },
         ranking : {
-            type : dataTypes.INTEGER.UNSIGNED,
+            type : DataTypes.INTEGER.UNSIGNED,
             allowNull : false,
             unique : true
         },
         active : {
-            type : dataTypes.BOOLEAN,
+            type : DataTypes.BOOLEAN,
             allowNull : false,
-            underscored : true
-        },
+            /* underscored : true */
+            defaultValue : 1
+        }/* ,
         awards : {
-            type : dataTypes.INTEGER.UNSIGNED,
+            type : DataTypes.INTEGER.UNSIGNED,
             allowNull : false,
             defaultValue : 0
         },
         releaseDate : {
-            type : dataTypes.DATE,
+            type : DataTypes.DATE,
             allowNull : false,
         },
         length : {
-            type : dataTypes.INTEGER.UNSIGNED,
-           /*  allowNull : true */ /* POR DEFECTO */
+            type : DataTypes.INTEGER.UNSIGNED,
+           //  allowNull : true  // POR DEFECTO
             defaultValue : null,
         },
         genreID : {
-            type : dataTypes.INTEGER.UNSIGNED,
+            type : DataTypes.INTEGER.UNSIGNED,
             defaultValue : null,
-        }
-    }
+        } */
+    } 
 
     const config = {
-        tableName : 'movies', // Si no le paso nada me toma el nombre de la tabla en plural y lo convierte. Automatiza
+        tableName : 'genres', // Si no le paso nada me toma el nombre de la tabla en plural y lo convierte. Automatiza
         timestamps : true, /* MARCAS DE ERROR: Si no las tiene y no le avisamos a Sequelize que no las tiene, se genera un error  */
         underscored : true, /* AVISA QUE LAS MARCAS DE TIEMPO (timestamps) ESTAN ESCRITAS EN ESE FORMATO */
         
@@ -55,7 +58,7 @@ module.exports = (sequelize, dataTypes) => {
 
     /* SIEMPRE DECLARAR */
 
-    const Genre = sequelize.define(alias, cols, config);
+    const Genre = sequelize.define(alias /* 'Genre' */, cols, config);
 
     return Genre
 }

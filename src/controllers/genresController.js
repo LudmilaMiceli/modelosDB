@@ -1,7 +1,7 @@
 const db = require('../database/models')
 
-/* const alias = Genre */
-
+// const Genre = sequelize.define(alias /* 'Genre' */, cols, config)
+// const alias = Genre */
 module.exports = {
     list : (req,res) => {
         db.Genre.findAll({
